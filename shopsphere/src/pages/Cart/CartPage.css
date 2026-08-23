@@ -1,0 +1,22 @@
+.empty-cart {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 80px 30px;
+  text-align: center;
+}
+
+.empty-cart-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.empty-cart h3 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.empty-cart p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
