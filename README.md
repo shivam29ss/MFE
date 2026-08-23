@@ -1,0 +1,2 @@
+# MFE
+Micro frontend setup
