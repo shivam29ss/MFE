@@ -6,7 +6,7 @@ function HomePage() {
       <section className="hero">
         <div className="container hero-content">
           <div>
-            <span className="eyebrow">WELCOME TO SHOPSPHERE</span>
+            <span className="eyebrow">WELCOME TO SHOPSPHERE Shell</span>
 
             <h1>
               Everything you need.
