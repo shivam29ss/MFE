@@ -9,7 +9,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
+    chunkFilename: "[name].[contenthash].chunk.js",
     clean: true,
   },
 
@@ -83,12 +84,12 @@ module.exports = {
       shared: {
         react: {
           singleton: true,
-           requiredVersion: "19.2.8",
+          requiredVersion: "19.2.8",
         },
 
         "react-dom": {
           singleton: true,
-           requiredVersion: "19.2.8",
+          requiredVersion: "19.2.8",
         },
 
         "react-router-dom": {

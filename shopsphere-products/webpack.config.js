@@ -18,6 +18,8 @@ module.exports = {
 
     output: {
         publicPath: "auto",
+        filename: "[name].[contenthash].js",
+        chunkFilename: "[name].[contenthash].chunk.js",
         clean: true,
     },
 

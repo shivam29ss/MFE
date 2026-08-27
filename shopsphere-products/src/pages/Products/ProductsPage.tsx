@@ -30,7 +30,7 @@ function ProductsPage() {
       <div className="page-header">
         <div>
           <span className="eyebrow dark">SHOPSPHERE</span>
-          <h2>Trending Products</h2>
+          <h2>Trending Products v2</h2>
           <p>Explore our selection of popular products.</p>
         </div>
       </div>
