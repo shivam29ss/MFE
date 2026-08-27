@@ -4,3 +4,5 @@ shopsphere/package-lock.json
 /shopsphere-shell/dist
 /shopsphere-shell/node_modules
 shopsphere-shell/package-lock.json
+/shopsphere-products/dist
+/shopsphere-products/node_modules
