@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 
 import HomePage from "./pages/Home/HomePage";
-import ProductsPage from "./pages/Products/ProductsPage";
-import ProductDetailsPage from "./pages/ProductsDetails/ProductsDetailsPage";
+// import ProductsPage from "./pages/Products/ProductsPage";
+// import ProductDetailsPage from "./pages/ProductsDetails/ProductsDetailsPage";
 import CartPage from "./pages/Cart/CartPage";
 import AccountPage from "./pages/Account/AccountPage";
+import ProductsRemotePage from "./pages/Products/ProductsRemotePage";
 
 function App() {
   return (
@@ -17,12 +18,17 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          <Route path="/products" element={<ProductsPage />} />
-
+          {/* <Route path="/products" element={<ProductsPage />} /> */}
+          {/* <Route path="/products" element={<ProductsRemotePage />} /> */}
           <Route
+            path="/products/*"
+            element={<ProductsRemotePage />}
+          />
+
+          {/* <Route
             path="/products/:id"
             element={<ProductDetailsPage />}
-          />
+          /> */}
 
           <Route path="/cart" element={<CartPage />} />
 
