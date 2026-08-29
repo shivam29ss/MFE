@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: process.env.NODE_ENV || "development",
@@ -36,7 +37,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
-
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "./public/config.js",
+          to: "config.js",
+        },
+      ],
+    }),
     new ModuleFederationPlugin({
       name: "shell",
 
