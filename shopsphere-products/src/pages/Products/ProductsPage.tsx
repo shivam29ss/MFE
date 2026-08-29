@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ProductsPage.css";
-const products = [
+import type { Product, ProductsAppProps } from "../../types/types";
+const products: Product[] = [
   {
     id: 1,
     name: "MacBook Pro",
@@ -24,20 +25,20 @@ const products = [
   }
 ];
 
-function ProductsPage() {
+function ProductsPage({ onAddToCart }: ProductsAppProps) {
   return (
     <div className="container page">
       <div className="page-header">
         <div>
           <span className="eyebrow dark">SHOPSPHERE</span>
-          <h2>Trending Products v2</h2>
+          <h2>Trending Products v2</h2>z
           <p>Explore our selection of popular products.</p>
         </div>
       </div>
 
       <div className="product-grid">
         {products.map((product) => (
-          <Link to={`${product.id}`} key={product.id} className="product-link">
+
           <article className="product-card">
             <div className="product-image">
               <span>{product.category}</span>
@@ -52,17 +53,24 @@ function ProductsPage() {
                 <strong>
                   ₹{product.price.toLocaleString("en-IN")}
                 </strong>
+                <Link to={`${product.id}`} key={product.id} className="product-link">
+                  <button
+
+                    className="secondary-button"
+                  >
+                    View
+                  </button>
+                </Link>
 
                 <button
-                 
                   className="secondary-button"
+                  onClick={() => onAddToCart?.(product)}
                 >
-                  View
+                  Add to Cart
                 </button>
               </div>
             </div>
           </article>
-          </Link>
         ))}
       </div>
     </div>

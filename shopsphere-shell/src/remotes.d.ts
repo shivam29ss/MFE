@@ -1,7 +1,12 @@
 declare module "products/ProductsApp" {
-  import { ComponentType } from "react";
+  import type { ComponentType } from "react";
+  import type { Product } from "./types/Product";
 
-  const ProductsApp: ComponentType;
+  interface ProductsAppProps {
+    onAddToCart?: (product: Product) => void;
+  }
+
+  const ProductsApp: ComponentType<ProductsAppProps>;
 
   export default ProductsApp;
 }
