@@ -1,9 +1,9 @@
 declare module "products/ProductsApp" {
   import type { ComponentType } from "react";
-  import type { Product } from "./types/Product";
+  import type { User } from "../../../shared/contracts/auth";
 
   interface ProductsAppProps {
-    onAddToCart?: (product: Product) => void;
+    user?: User | null;
   }
 
   const ProductsApp: ComponentType<ProductsAppProps>;

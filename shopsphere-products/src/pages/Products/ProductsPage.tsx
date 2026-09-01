@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "./ProductsPage.css";
-import type { Product, ProductsAppProps } from "../../types/types";
+import type { Product } from "../../../../shared/contracts/cart";
+import { ADD_TO_CART_EVENT } from "../../../../shared/contracts/cart";
+
 const products: Product[] = [
   {
     id: 1,
@@ -25,13 +27,13 @@ const products: Product[] = [
   }
 ];
 
-function ProductsPage({ onAddToCart }: ProductsAppProps) {
+function ProductsPage() {
   return (
     <div className="container page">
       <div className="page-header">
         <div>
           <span className="eyebrow dark">SHOPSPHERE</span>
-          <h2>Trending Products v2</h2>z
+          <h2>Trending Products v2</h2>
           <p>Explore our selection of popular products.</p>
         </div>
       </div>
@@ -64,7 +66,15 @@ function ProductsPage({ onAddToCart }: ProductsAppProps) {
 
                 <button
                   className="secondary-button"
-                  onClick={() => onAddToCart?.(product)}
+                  // onClick={() => onAddToCart?.(product)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    window.dispatchEvent(
+                      new CustomEvent(ADD_TO_CART_EVENT, {
+                        detail: product,
+                      })
+                    );
+                  }}
                 >
                   Add to Cart
                 </button>

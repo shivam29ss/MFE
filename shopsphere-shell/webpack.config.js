@@ -13,6 +13,7 @@ module.exports = {
     filename: "[name].[contenthash].js",
     chunkFilename: "[name].[contenthash].chunk.js",
     clean: true,
+    publicPath: "/",
   },
 
   resolve: {
