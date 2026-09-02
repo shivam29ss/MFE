@@ -46,11 +46,15 @@ function RemoteErrorBoundary({ children }: Props) {
         <RemoteErrorFallback {...fallbackProps} />
       )}
       onError={(error, info) => {
-        console.error("Remote MFE failed:", error);
-        console.error(
-          "Component stack:",
-          info.componentStack
-        );
+        console.error("[MFE_ERROR]", {
+          mfe: "products",
+          message:
+            error instanceof Error
+              ? error.message
+              : String(error),
+          componentStack: info.componentStack,
+          timestamp: new Date().toISOString(),
+        });
       }}
     >
       {children}
