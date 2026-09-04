@@ -38,13 +38,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+
     new ModuleFederationPlugin({
       name: "shell",
 
       remotes: {
         products: `promise new Promise((resolve, reject) => {
       const remoteUrl =
-        window.PRODUCTS_MFE_URL;
+        window.__SHOPSPHERE_CONFIG__.PRODUCTS_MFE_URL;
 
       const script = document.createElement("script");
 
