@@ -3,9 +3,34 @@ import React, {
   useContext,
   useState,
 } from "react";
-import type {  CartContextValue } from "../types/products";
+import type { CartContextValue } from "../types/products";
 import type { Product, CartItem } from "../../../shared/contracts/cart";
+const CART_STORAGE_KEY = "shopsphere:cart";
 
+function getInitialCart(): CartItem[] {
+  try {
+    const storedCart = localStorage.getItem(
+      CART_STORAGE_KEY
+    );
+
+    if (!storedCart) {
+      return [];
+    }
+
+    const parsedCart = JSON.parse(storedCart);
+
+    return Array.isArray(parsedCart)
+      ? parsedCart
+      : [];
+  } catch (error) {
+    console.error(
+      "Failed to restore cart:",
+      error
+    );
+
+    return [];
+  }
+}
 const CartContext = createContext<CartContextValue | undefined>(
   undefined
 );
@@ -16,9 +41,30 @@ export function CartProvider({
   children: React.ReactNode;
 }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const updateCart = (
+    updater: (items: CartItem[]) => CartItem[]
+  ) => {
+    setCartItems((currentItems) => {
+      const updatedItems = updater(currentItems);
+
+      try {
+        localStorage.setItem(
+          CART_STORAGE_KEY,
+          JSON.stringify(updatedItems)
+        );
+      } catch (error) {
+        console.error(
+          "Failed to persist cart:",
+          error
+        );
+      }
+
+      return updatedItems;
+    });
+  };
 
   const addToCart = (product: Product) => {
-    setCartItems((currentItems) => {
+    updateCart((currentItems) => {
       const existingItem = currentItems.find(
         (item) => item.id === product.id
       );
@@ -27,9 +73,9 @@ export function CartProvider({
         return currentItems.map((item) =>
           item.id === product.id
             ? {
-                ...item,
-                quantity: item.quantity + 1,
-              }
+              ...item,
+              quantity: item.quantity + 1,
+            }
             : item
         );
       }
@@ -45,7 +91,7 @@ export function CartProvider({
   };
 
   const removeFromCart = (productId: number) => {
-    setCartItems((currentItems) =>
+    updateCart((currentItems) =>
       currentItems.filter(
         (item) => item.id !== productId
       )
@@ -53,27 +99,27 @@ export function CartProvider({
   };
 
   const increaseQuantity = (productId: number) => {
-    setCartItems((currentItems) =>
+    updateCart((currentItems) =>
       currentItems.map((item) =>
         item.id === productId
           ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
+            ...item,
+            quantity: item.quantity + 1,
+          }
           : item
       )
     );
   };
 
   const decreaseQuantity = (productId: number) => {
-    setCartItems((currentItems) =>
+    updateCart((currentItems) =>
       currentItems
         .map((item) =>
           item.id === productId
             ? {
-                ...item,
-                quantity: item.quantity - 1,
-              }
+              ...item,
+              quantity: item.quantity - 1,
+            }
             : item
         )
         .filter((item) => item.quantity > 0)
@@ -81,7 +127,7 @@ export function CartProvider({
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    updateCart(() => []);
   };
 
   const cartCount = cartItems.reduce(
@@ -94,7 +140,6 @@ export function CartProvider({
       total + item.price * item.quantity,
     0
   );
-
   return (
     <CartContext.Provider
       value={{

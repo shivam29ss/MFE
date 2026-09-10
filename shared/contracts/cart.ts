@@ -10,7 +10,7 @@ export interface CartItem extends Product {
   quantity: number;
 }
 
-export interface AddToCartDetail {
+export interface AddToCartDetail extends CartItem{
   product: Product;
 }
 

@@ -10,3 +10,5 @@ declare module "products/ProductsApp" {
 
   export default ProductsApp;
 }
+
+declare module "cart/Cart";

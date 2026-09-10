@@ -10,6 +10,8 @@ import AccountPage from "./pages/Account/AccountPage";
 import ProductsRemotePage from "./pages/Products/ProductsRemotePage";
 import { AuthProvider } from "./auth/AuthContext";
 import LoginPage from "./pages/Login/LoginPage";
+import CartRemotePage from "./pages/Cart/CartRemotePage";
+
 
 function App() {
   return (
@@ -35,15 +37,15 @@ function App() {
             path="/products/:id"
             element={<ProductDetailsPage />}
           /> */}
-
-            <Route
+            <Route path="/cart" element={<CartRemotePage />} />
+            {/* <Route
               path="/cart"
               element={
                 <ProtectedRoute>
                   <CartPage />
                 </ProtectedRoute>
               }
-            />
+            /> */}
 
             <Route
               path="/account"
