@@ -21,7 +21,7 @@ const emit = defineEmits<{
 <template>
   <div class="cart-container">
     <div class="cart-header">
-      <h2>Shopping Cart</h2>
+      <h2>Shopping Cart mfe</h2>
 
       <span v-if="props.cartItems.length > 0" class="item-count">
         {{
