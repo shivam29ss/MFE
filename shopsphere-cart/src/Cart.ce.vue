@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CartItem } from "../../../shared/contracts/cart";
+import type { CartItem } from "../../shared/contracts/cart";
 
 const props = withDefaults(
   defineProps<{
