@@ -5,25 +5,25 @@ import vue from "@vitejs/plugin-vue";
 import { federation } from "@module-federation/vite";
 
 export default defineConfig({
- plugins: [
-  vue(),
+  plugins: [
+    vue(),
 
-  federation({
-    name: "cart",
-    filename: "remoteEntry.js",
-    manifest: true,
+    federation({
+      name: "cart",
+      filename: "remoteEntry.js",
+      manifest: true,
 
-    exposes: {
-      "./Cart": "./src/cart-entry.ts",
-    },
+      exposes: {
+        "./Cart": "./src/cart-entry.ts",
+      },
 
-    shared: ["vue"],
+      shared: ["vue"],
 
-    library: {
-      type: "module",
-    },
-  }),
-],
+      library: {
+        type: "module",
+      },
+    }),
+  ],
 
   resolve: {
     alias: {
@@ -37,7 +37,7 @@ export default defineConfig({
     origin: "http://localhost:3002",
   },
 
-  base: "/",
+  base: "https://cart-mfe.yrus2909.workers.dev/",
 
   build: {
     target: "esnext",
