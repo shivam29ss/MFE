@@ -37,7 +37,7 @@ export default defineConfig({
     origin: "http://localhost:3002",
   },
 
-  base: "http://localhost:3002/",
+  base: "/",
 
   build: {
     target: "esnext",
